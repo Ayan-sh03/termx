@@ -57,7 +57,7 @@ async fn main() -> anyhow::Result<()> {
     let llm = LlmClient::new(base_url, api_key, model.clone())?;
     let tools = ToolRegistry::new();
     let opts = AgentOptions {
-        max_steps: 12,
+        max_steps: 50,
         yolo: false, // set true to auto-approve tool calls
         step_timeout: tokio::time::Duration::from_secs(45),
         observation_clip: 4000, // keep large enough for code blocks

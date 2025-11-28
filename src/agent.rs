@@ -5,13 +5,14 @@ use crate::types::Message;
 use crate::utils::{clip, display_diff_side_by_side};
 use async_trait::async_trait;
 use serde_json::Value;
-use std::io::{self, Write};
 use std::collections::HashSet;
+use std::io::{self, Write};
 use tokio::time::{Duration, timeout};
 
 #[async_trait]
 pub trait LlmClientTrait {
     async fn chat_once(&self, messages: &[Message], tools: &Value) -> anyhow::Result<Message>;
+    #[allow(dead_code)]
     async fn chat_once_no_stream(
         &self,
         messages: &[Message],
@@ -46,6 +47,7 @@ pub struct Agent {
 }
 
 impl Agent {
+    #[allow(dead_code)]
     pub fn new(
         llm: Box<dyn LlmClientTrait + Send + Sync>,
         tools: ToolRegistry,
@@ -79,6 +81,7 @@ impl Agent {
             }
         }
         // You can also drop very old messages if they exceed some count/size.
+        let _ = session.save_session();
     }
 
     pub async fn run_turn(&self, session: &mut Session) -> anyhow::Result<Option<String>> {
@@ -153,6 +156,8 @@ impl Agent {
                         .unwrap_or_else(|_| tc.function.arguments.clone());
                     println!("\u{001b}[90m{}\u{001b}[0m", pretty_args);
                 }
+
+                let _ = session.save_session();
             }
         }
 
