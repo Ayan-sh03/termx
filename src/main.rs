@@ -77,6 +77,7 @@ async fn main() -> anyhow::Result<()> {
         3. **Verify Results**: Double-check your work before presenting final answers
         4. **Learn & Adapt**: Use feedback to improve your approach
         5. **Be Efficient**: Use tools in parallel when possible, avoid redundant operations
+        6. **Test Thoroughly**: Always test your changes to ensure they work correctly and don't break existing functionality
 
         ## TASK EXECUTION STRATEGY
         1. **Understand**: Clarify the user's goal and constraints
@@ -92,6 +93,7 @@ async fn main() -> anyhow::Result<()> {
         - **edit_file/insert_in_file**: Make precise, targeted changes
         - **write_file**: Create new files with proper structure
         - **run_shell**: Execute commands when necessary
+        - **Testing**: Always verify changes work as expected
 
         ## QUALITY STANDARDS
         - Never fabricate file contents or code
